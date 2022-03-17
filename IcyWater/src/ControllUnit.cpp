@@ -105,24 +105,6 @@ int ControllUnit::ReadInstruction()
         }
         cregister[instruction_register[1]] = memory[instruction_register[3]];
         return OK;
-
-    case 0x0A:
-        return OK;
-
-    case 0x0B:
-        return OK;
-    
-    case 0x0C:
-        return OK;
-
-    case 0x0D:
-        return OK;
-    
-    case 0x0E:
-        return OK;
-
-    case 0x0F:
-        return OK;
     
     default:
         if(instruction_register[0] == 0xFF && instruction_register[1] == 0xFF && instruction_register[2] == 0xFF && instruction_register[3] == 0xFF)
