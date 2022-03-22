@@ -5,6 +5,7 @@
 
 
 #include "Cpu.h"
+#include "Interpreter.h"
 
 
 #define print(x) std::cout << x << std::endl;
@@ -24,15 +25,9 @@ int main()
 
     Cpu icy_water;
     icy_water.Run();
+    Interpreter i;
+//    i.Test("/home/robert/MyProgramms/Challenge/Emulator/IcyWater/binaries/challenge.S.hex");
 
     
-
-/*
-    for(int i = 0; i < 256; i++)
-    {
-        print(+(memory[i]));
-    }
-*/
-
     return 0;
 }

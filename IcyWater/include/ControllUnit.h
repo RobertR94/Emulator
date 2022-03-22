@@ -47,8 +47,11 @@ class ControllUnit
         int UpdateInstructionRegister();
         //Interprete Instructions
         int ReadInstruction();
-        //Reset all registers to zero
-        void ResetRegister();
+        //Reset all general purpose registers to zero
+        void ResetGPRegister();
+        //Rest instruction count and instruction register to zero
+        void RestControllRegister();
+
     
     private:
         void PrintOP(std::string op, unsigned char a, unsigned char b);

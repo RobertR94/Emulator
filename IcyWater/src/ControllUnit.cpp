@@ -11,14 +11,14 @@ int ControllUnit::UpdateInstructionRegister()
     {   
         if(instruction_cnt_register > bound)
         {
-            return OK;
+            return OutOfMemory;
         }
         instruction_register[i] = memory[instruction_cnt_register];
         instruction_cnt_register++;
     }
 
 
-    return OutOfMemory;
+    return OK;
 }
 
 
@@ -116,9 +116,15 @@ int ControllUnit::ReadInstruction()
     return Invalid;
 }
 
-void ControllUnit::ResetRegister()
+void ControllUnit::ResetGPRegister()
 {
-    instruction_cnt_register = 0b00000000;
-    std::fill(instruction_register, instruction_register+4, 0b00000000);
+    
     std::fill(cregister, cregister+8, 0b00000000);
+}
+
+
+void ControllUnit::RestControllRegister()
+{
+     instruction_cnt_register = 0b00000000;
+     std::fill(instruction_register, instruction_register+4, 0b00000000);
 }
