@@ -3,6 +3,8 @@
 #include "memory.h"
 #include "ControllUnit.h"
 
+#define DivZeroInf(a, b) std::cout << "Div: " << a << ", " << b << std::endl;
+
 
 int ControllUnit::UpdateInstructionRegister()
 {   
@@ -29,65 +31,53 @@ void ControllUnit::PrintOP(std::string op, unsigned char a, unsigned char b)
 
 
 int ControllUnit::ReadInstruction()
-{   
-    
-    
+{       
+
     switch (instruction_register[0])
     {
     case 0x00:
-        PrintOP("Add", cregister[instruction_register[2]], cregister[instruction_register[3]]);
+        
         cregister[instruction_register[1]] = cpu.Add(cregister[instruction_register[2]], cregister[instruction_register[3]]);
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
         return OK;
     
     case 0x01:
-        PrintOP("Sub", cregister[instruction_register[2]], cregister[instruction_register[3]]);
+        
         cregister[instruction_register[1]] = cpu.Sub(cregister[instruction_register[2]], cregister[instruction_register[3]]);
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
         return OK;
     
     case 0x02:
-        PrintOP("Mul", cregister[instruction_register[2]], cregister[instruction_register[3]]);
+    
         cregister[instruction_register[1]] = cpu.Mul(cregister[instruction_register[2]], cregister[instruction_register[3]]);
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
         return OK;
 
     case 0x03:
-        PrintOP("Div", cregister[instruction_register[2]], cregister[instruction_register[3]]);
         if(cregister[instruction_register[3]] == 0x00)
         {
+            DivZeroInf(+(cregister[instruction_register[2]]), +(cregister[instruction_register[3]]))
             return DvisionByZero;
         }
         cregister[instruction_register[1]] = cpu.Div(cregister[instruction_register[2]], cregister[instruction_register[3]]);
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
         return OK;
     
     case 0x04:
-        PrintOP("Addi", cregister[instruction_register[2]], instruction_register[3]);
         cregister[instruction_register[1]] = cpu.Add(cregister[instruction_register[2]], instruction_register[3]);
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
         return OK;
     
     case 0x05:
-        PrintOP("Subi", cregister[instruction_register[2]], instruction_register[3]);
-        cregister[instruction_register[1]] = cregister[instruction_register[2]] - instruction_register[3];
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
+        cregister[instruction_register[1]] = cpu.Sub(cregister[instruction_register[2]], instruction_register[3]);
         return OK;
     
     case 0x06:
-        PrintOP("Muli", cregister[instruction_register[2]], instruction_register[3]);
-        cregister[instruction_register[1]] = cregister[instruction_register[2]] * instruction_register[3];
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
+        cregister[instruction_register[1]] = cpu.Mul(cregister[instruction_register[2]], instruction_register[3]);
         return OK;
     
     case 0x07:
-        PrintOP("Divi", cregister[instruction_register[2]], instruction_register[3]);
         if(instruction_register[3] == 0x00)
         {
+            DivZeroInf(+(cregister[instruction_register[2]]), +(instruction_register[3]));
             return DvisionByZero;
         }
-        cregister[instruction_register[1]] = cregister[instruction_register[2]] / instruction_register[3];
-        std::cout << "result: " << +(cregister[instruction_register[1]]) << std::endl;
+        cregister[instruction_register[1]] = cpu.Div(cregister[instruction_register[2]], instruction_register[3]);
         return OK;
     
     case 0x08:

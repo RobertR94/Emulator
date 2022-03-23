@@ -3,8 +3,8 @@
 #include <dirent.h>
 #include <cstring>
 
-#include "Cpu.h"
 #include "memory.h"
+#include "Cpu.h"
 
 void Cpu::RunProgram(std::string name)
 {   
@@ -12,13 +12,16 @@ void Cpu::RunProgram(std::string name)
     cu.RestControllRegister();
     interpreter.ResetFilePos();
     int interpreter_state = interpreter.ToBinary(name);
+
     if (interpreter_state == Interpreter::InterpreterState::SyntaxError)
     {
         std::cout << "\n[ERROR] Invalid programm" << std::endl;
         return;
     }
+
     interpreter.WriteToMemory();
     int controll_unit_state = ControllUnit::OK;  
+
     while(controll_unit_state == ControllUnit::OK)
     {   
         controll_unit_state = cu.UpdateInstructionRegister();
@@ -31,6 +34,7 @@ void Cpu::RunProgram(std::string name)
         controll_unit_state = cu.ReadInstruction();
         
     }
+    
     if(controll_unit_state == ControllUnit::State::DvisionByZero)
     {
         std::cout << "\n[ERROR] division by zero (core dumped)" << std::endl;

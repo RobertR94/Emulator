@@ -32,8 +32,10 @@ class ControllUnit
             Exit
         };
 
+
     private:
-        
+        void PrintOP(std::string op, unsigned char a, unsigned char b);
+        bool IsZero(unsigned char n);
     
     public:
         ControllUnit()
@@ -52,9 +54,6 @@ class ControllUnit
         //Rest instruction count and instruction register to zero
         void RestControllRegister();
 
-    
-    private:
-        void PrintOP(std::string op, unsigned char a, unsigned char b);
-        bool IsZero(unsigned char n);
+        
 
 };
