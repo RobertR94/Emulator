@@ -127,6 +127,7 @@ int Interpreter::ToBinary(std::string name)
     {
         while (program >> w)
         {   
+            
             state = WordTranslate(w, word);
             if(state == SyntaxError)
             {
