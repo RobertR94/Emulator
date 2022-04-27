@@ -8,7 +8,22 @@
 
 int ControllUnit::UpdateInstructionRegister()
 {   
+    /* Coderitter: Auch witzig, das man hier über einen Parameter einfach die Größe der
+    Instuktionen verändern könnte. Würde dann aber nicht mehr ganz zur Computing-Unit passen.
+    Daher hätte man das sogar fest einprogrammieren können, sogar ohne Schleife. Hier kommt 
+    das Prinzip zum Einsatz, dass man in den Code nur die Features einbaut, die man wirklich
+    braucht, denn jedes Feature kostet und man will kein Geld ausgeben für Dinge, die im Moment
+    noch keinen Nutzen bringen. Sehr wichtiges Prinzip. Du hättest es z.B. auch so hier schreiben 
+    können, dann wird es einfacher.
+    
+    instruction_register[0] = memory[instruction_cnt_register];
+    instruction_register[1] = memory[instruction_cnt_register + 1];
+    instruction_register[2] = memory[instruction_cnt_register + 2];
+    instruction_register[3] = memory[instruction_cnt_register + 3];
 
+    Eine weitere Kritik ist vielleicht, dass der Methodenname hätte passender sein können, z.B.
+    'ReadNextInstructionFromMemory'.
+    */
     for(int i = 0; i < instruction_size; i++)
     {   
         if(instruction_cnt_register > bound)
@@ -29,7 +44,8 @@ void ControllUnit::PrintOP(std::string op, unsigned char a, unsigned char b)
     std::cout << op << ": " << +a << " and " << +b << std::endl;
 }
 
-
+/* Coderitter: Nach dem Inhalt her werden hier die Rechenoperationen ausgeführt. Eventuell könnte die Methode
+dann auch anders heißen, sowas wie ExecuteInstruction. */
 int ControllUnit::ReadInstruction()
 {       
 

@@ -3,7 +3,7 @@
 #include <ComputingUnit.h>
 
 
-
+/* Coderitter: Eventuell hätte die Klasse Registers heißen können? */
 class ControllUnit
 {
 

@@ -55,7 +55,10 @@ int Interpreter::GetSize(std::string path)
 }
 
 
-
+/* Coderitter: Hier haben wir verstanden, dass du die Programme sogar in Scheiben in den
+Speicher des CPU's lädst. Das heißt, dein Emulator überbrückt sogar Limitierungen des eigentlichen
+emulierten physischen Prozessors. Das heißt, auf einem echten physischen Ice Water hätte
+man zu große Programme gar nicht ausführen können. Mit deinem Emulator geht es. */
 void Interpreter::WriteToMemory()
 {
 
@@ -115,6 +118,8 @@ void Interpreter::WriteToMemory()
 
 int Interpreter::ToBinary(std::string name)
 {   
+    /* Coderitter: Schöne Separierung der Funktionalitäten. Also das heißt, dass du dir den
+    Dateinamen einer Hex-Datei über eine Funktion erstellen lässt. */
     binary_path = NameBinary(name);
     std::ofstream binary(binary_path);
     
@@ -159,6 +164,7 @@ std::string Interpreter::NameBinary(std::string s)
 {
     s.pop_back();
     s.append("hex");
+    /* Coderitter: Der fest codierte Pfad ist natürlich nicht so günstig ;) */
     return "/home/robert/MyProgramms/Challenge/Emulator/IcyWater/binaries/" + s;
 }
 
