@@ -4,6 +4,12 @@
 #include <fstream>
 #include <map>
 
+/* Coderitter: Verrückt, dass du auch noch eine Assemblersprache umgesetzt hast. Das hätten 
+wir erst für spätere Versionen des Ice Waters vorgesehen.
+
+Ich glaube aber, der Interpreter müsste eher Compiler heißen. Er nimmt das Assembler Programm und
+erzeugt daraus Byte Code für die CPU. */
+
 //Class to translate a assembler file into a binarie(.hex) file
 //and write the binarie into memory
 class Interpreter
@@ -53,7 +59,7 @@ class Interpreter
 
     private:
 
-        
+        /* Coderitter: Wenn du die beiden Wörter umdrehst, TranslateWord, dann wird es schon besser lesbar. */
         //Translate assembler word into hex code
         int WordTranslate(std::string word, std::string& rlt);
 
@@ -61,6 +67,8 @@ class Interpreter
 
         int GetSize(std::string file);
 
+        /* Coderitter: Sowas kann man dann z.B. auch so nennen: GetBinaryPath. Da wird es noch ein
+        Stück lesbarer. So wie eins oben drüber bei GetSize oder IsNumeric. */
         std::string NameBinary(std::string s);
 
 
