@@ -1,28 +1,27 @@
 #pragma once
-#include <vector>
-#include "Interpreter.h"
-#include "ControllUnit.h"
+#include <string>
+
+#include "Memory.h"
+#include "Register.h"
+#include "ControlUnit.h"
+#include "CpuState.h"
 
 class Cpu
 {
     private:
-        Interpreter interpreter;
-        ControllUnit cu;
+        ControlUnit controlUnit;
+        CpuState cpuState;
 
     public:
 
+        Registers registers;
+        Memory* memory;
 
     private:
-        bool PrintMenu(std::string& name);
-        bool Continue();
-        
-    
-    public:
+        void resetCpuState();
 
-       void RunProgram(std::string name);
-       void Run();
-       void Clear();
-       void FindPrograms(std::vector<std::string>& names);
-       bool InNames(std::string name, std::vector<std::string>& names);
-       
+    public:
+        Cpu(Memory* mem);
+        CpuState runProgram(std::string& name);
+           
 };
